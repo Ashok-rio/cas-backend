@@ -1,0 +1,45 @@
+{
+  "name": "cas-backend",
+  "version": "1.0.0",
+  "description": "college of Arts and Science",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev":"nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashok-rio/cas-backend.git"
+  },
+  "author": "Ashok",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ashok-rio/cas-backend/issues"
+  },
+  "homepage": "https://github.com/Ashok-rio/cas-backend#readme",
+  "dependencies": {
+    "await-to-js": "^2.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.5",
+    "http-status": "^1.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "mailgun-js": "^0.22.0",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.21",
+    "mongoose-paginate-v2": "^1.3.9",
+    "mongoose-unique-validator": "^2.0.3",
+    "mongoose-validator": "^2.1.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4",
+    "parse-error": "^0.2.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "uuid": "^8.2.0",
+    "validator": "^13.1.1"
+  }
+}
