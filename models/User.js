@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
+const { to, ReE, ReS, isNull, isEmpty } = require('../services/util.service')
+const bcrypt = require('bcryptjs');
+const CONFIG = require('../config/config')
+const jwt = require('jsonwebtoken')
 
 const UserSchema = new mongoose.Schema({
-    RegNo: {
+    regNo: {
         type: String,
         uppercase: true,
         required: true,
@@ -11,6 +15,37 @@ const UserSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true
+    },
+    email:{
+      type:String,
+      required:true
+    },
+    password:{
+      type:String
+    },
+    profileName:{
+      type:String
+    },
+    phone:{
+      type:String,
+      required:true
+    },
+    dob:{
+      type:String,
+      required:true
+    },
+    department:{
+      type:String,
+      required:true
+    },
+    course:{
+      type:String,
+      required:true
+    },
+    graduate:{
+      type:String,
+      enum:['UG','PG'],
+      required:true
     },
     active: {
         type: Boolean,

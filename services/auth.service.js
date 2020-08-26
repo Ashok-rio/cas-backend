@@ -10,24 +10,24 @@ const createUser = async function (userInfo) {
     let unique_key, err, sameUser, existingUser, userUpdate
     
     
-    unique_key = userInfo.RegNo
+    unique_key = userInfo.regNo
     if (!unique_key) TE('RegNo id not provided.')
     
     if (unique_key) {
-        userInfo.RegNo = unique_key;
+        userInfo.regNo = unique_key;
         [err, existingUser] = await to(
-            User.findOne({'RegNo': unique_key}))
+            User.findOne({'regNo': unique_key}))
         if (err) return TE('Unknown error occurred, Please contact support.')
         if (existingUser) {
             TE('You are already signed up. Please login to continue.')
         } else {
             
-            [err, sameUser] = await to(User.findOne({'RegNo': unique_key}))
+            [err, sameUser] = await to(User.findOne({'regNo': unique_key}))
             if (err) TE('Unknown error occurred, Please contact support.')
             else {
                 if (sameUser) {
                     [err, userUpdate] = await to(
-                        User.findOneAndUpdate({'RegNo': unique_key},
+                        User.findOneAndUpdate({'regNo': unique_key},
                             {$push: {type: userInfo.type}}))
                     if (err) TE(
                         'Unknown error occurred, Please contact support.')

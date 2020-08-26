@@ -12,5 +12,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/create', UserController.create);
+router.post('/login', UserController.login);
+router.get('/get',needsAuth, UserController.get);
 
 module.exports = router
