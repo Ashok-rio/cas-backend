@@ -40,7 +40,7 @@ exports.create = async (req, res) => {
     
     if (exisitUser) { return ReE(res, { message: 'User already here!' }, HttpStatus.BAD_REQUEST) }
     
-    let newUser = req.body;
+    let newUser = {...req.body, profileName:req.body.name };
 
     let user;
 
@@ -104,8 +104,6 @@ exports.login = async (req, res) => {
 exports.get =  async (req,res) => {
 
     let  user = req.user;
-
-    console.log(user,'ReqUser');
 
     let err,exisitingUser;
 

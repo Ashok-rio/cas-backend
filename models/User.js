@@ -47,6 +47,9 @@ const UserSchema = new mongoose.Schema({
       enum:['UG','PG'],
       required:true
     },
+    profilePic:{
+      type:String
+    },
     active: {
         type: Boolean,
         default: true

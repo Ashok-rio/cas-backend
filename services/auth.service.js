@@ -5,8 +5,7 @@ const {to, TE} = require('../services/util.service')
 const CONFIG = require('../config/config')
 
 const createUser = async function (userInfo) {
-    console.log(userInfo);
-
+    
     let unique_key, err, sameUser, existingUser, userUpdate
     
     
