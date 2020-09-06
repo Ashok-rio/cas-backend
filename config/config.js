@@ -6,7 +6,7 @@ CONFIG.app = process.env.APP || 'development'
 
 CONFIG.port = process.env.PORT || '3000'
 
-CONFIG.db_uri  = process.env.MONGODB_URI   || 'mongodb://localhost:27017/cas_mobile';
+CONFIG.db_uri  = process.env.MONGODB_URI   || 'mongodb+srv://ashok123:7rxfg9KMURQfCukl@anywhere.fhsyn.gcp.mongodb.net/anywhere?retryWrites=true&w=majority'
 
 CONFIG.jwt_encryption = process.env.JWT_ENCRYPTION || 'jwt_please_change'
 
