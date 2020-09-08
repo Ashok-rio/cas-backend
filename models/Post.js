@@ -1,12 +1,30 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
-  poster: { type: mongoose.Types.ObjectId, ref: "User" },
+  poster: { 
+      type: mongoose.Types.ObjectId, 
+      ref: "User" 
+    },
   postText: {
       type:String,
   },
-  postMediaUrl:{
+  savePost:{
+    type:Boolean,
+    default:false
+  },
+  publicPost:{
+      type:Boolean,
+      default:false
+  },
+  url:{
       type:String,
+  },
+  link:{
+      type:Boolean,
+      default:false
+  },
+  linkUrl:{
+      type:String
   },
   postTime:{
       type:Date,

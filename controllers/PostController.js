@@ -3,7 +3,9 @@ const { to, ReE, ReS, isNull, isEmpty } = require('../services/util.service');
 const HttpStatus = require('http-status')
 
 exports.postCreate = async (req, res) => {
-
+    
+    console.log(req.body,'body');
+    console.log(req.user);
     const user = req.user;
     let  err,exisitingUser;
 
@@ -46,7 +48,7 @@ exports.getAllPost = async (req,res) => {
 
     let posts;
 
-    [err,posts] = await to(Post.find({},{}).sort({postTime:-1}).populate({path:'poster',select:['name','profilePic']}));
+    [err,posts] = await to(Post.find({},[],{sort:{'_id': -1}}).populate({path:'poster',select:['name','profilePic']}));
 
     if(err){
         return ReE(res, err,HttpStatus.INTERNAL_SERVER_ERROR)
