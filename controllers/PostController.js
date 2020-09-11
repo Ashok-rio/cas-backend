@@ -48,7 +48,7 @@ exports.getAllPost = async (req,res) => {
 
     let posts;
 
-    [err,posts] = await to(Post.find({},[],{sort:{'_id': -1}}).populate({path:'poster',select:['name','profilePic']}));
+    [err,posts] = await to(Post.find({},[],{sort:{'_id': -1}}).populate({path:'poster',select:['profilePic','profileName']}));
 
     if(err){
         return ReE(res, err,HttpStatus.INTERNAL_SERVER_ERROR)

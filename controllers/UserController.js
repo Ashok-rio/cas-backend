@@ -114,6 +114,27 @@ exports.get =  async (req,res) => {
     if(!exisitingUser){return ReE(res, { message: 'User not found'}, HttpStatus.BAD_REQUEST)}
 
     if(exisitingUser){ return ReS(res, { message: 'user data', user: exisitingUser }, HttpStatus.OK) } 
+}
 
+
+exports.update = async (req,res) => {
+
+    let user = req.user;
+
+    let err, exisitingUser,updateUser;
+
+    [err, exisitingUser] = await to(User.findById(user._id))
+
+    if (err) {return ReE(res, err, HttpStatus.INTERNAL_SERVER_ERROR)}
+
+    if(!exisitingUser){return ReE(res, { message: 'User not found'}, HttpStatus.BAD_REQUEST)}
+
+    [err, updateUser] = await to(User.updateOne({_id:user._id},{$set:req.body}));
+
+    if (err) {return ReE(res, err, HttpStatus.INTERNAL_SERVER_ERROR)}
+
+    if(!updateUser){ return ReE(res,{message:'Unhandled process try again'},HttpStatus.BAD_REQUEST)}
+
+    if(updateUser){ return ReS(res,{ message:'Update successfuly',status:updateUser },HttpStatus.OK) }
 
 }

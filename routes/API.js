@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 router.post('/create', UserController.create);
 router.post('/login', UserController.login);
 router.get('/get',needsAuth, UserController.get);
+router.put('/update',needsAuth, UserController.update);
 
 router.post('/post/create',needsAuth,PostController.postCreate);
 router.get('/post/getAll',needsAuth,PostController.getAllPost);
