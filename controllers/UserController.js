@@ -16,10 +16,10 @@ exports.create = async (req, res) => {
         'name',
         'email',
         'phone',
-        'dob',
-        'department',
-        'course',
-        'graduate'
+        // 'dob',
+        // 'department',
+        // 'course',
+        // 'graduate'
     ]
     
     let invalidFields = fields.filter(field => {

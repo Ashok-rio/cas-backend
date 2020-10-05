@@ -4,8 +4,6 @@ const HttpStatus = require('http-status')
 
 exports.postCreate = async (req, res) => {
     
-    console.log(req.body,'body');
-    console.log(req.user);
     const user = req.user;
     let  err,exisitingUser;
 
