@@ -5,6 +5,7 @@ const HttpStatus = require('http-status')
 exports.postCreate = async (req, res) => {
     
     const user = req.user;
+
     let  err,exisitingUser;
 
     [err, exisitingUser] = await to(User.findById(user._id));
@@ -12,6 +13,7 @@ exports.postCreate = async (req, res) => {
     if(err){return ReE(res,err, HttpStatus.INTERNAL_SERVER_ERROR)}
 
     if(!exisitingUser){
+        
         return ReE(res,{message:'User doesn\t exisit'},HttpStatus.BAD_REQUEST)
     }
 

@@ -10,7 +10,6 @@ const SemFeeSchema = new mongoose.Schema({
   },
   course:{
     type:String,
-    required:true
   },
   semester: [
     {

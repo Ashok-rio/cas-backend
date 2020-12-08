@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { to, ReE, ReS, isNull, isEmpty } = require("../services/util.service");
+const { to, ReE, ReS, isNull, isEmpty, TE } = require("../services/util.service");
 const bcrypt = require("bcryptjs");
 const CONFIG = require("../config/config");
 const jwt = require("jsonwebtoken");
@@ -82,7 +82,6 @@ UserSchema.pre("save", async function (next) {
 
     [err, hash] = await to(bcrypt.hash(this.password, salt));
     if (err) TE(err.message, true);
-
     this.password = hash;
   } else {
     return next();

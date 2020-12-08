@@ -73,6 +73,7 @@ exports.createSemFee = async (req, res) => {
     SemesterFee.create({
       personId: personId,
       userId: student._id,
+      course :req.body.class,
       semester: {
         semesterName: req.body.semesterName,
         semesterFees: req.body.semesterFees,
@@ -95,14 +96,12 @@ exports.createSemFee = async (req, res) => {
       HttpStatus.INTERNAL_SERVER_ERROR
     );
   }
-
-  if (createFee) {
+    
     return ReS(
       res,
       { message: "Create successfully!", Sem: createFee },
       HttpStatus.OK
     );
-  }
 };
 
 exports.addSemFee = async (req, res) => {

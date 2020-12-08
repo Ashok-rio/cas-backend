@@ -4,6 +4,7 @@ const router = express.Router()
 const UserController = require('../controllers/UserController')
 const PostController = require('../controllers/PostController')
 const SemFeeController = require('../controllers/SemFeeController')
+const BusFeeController = require('../controllers/BusFeeController')
 
 const passport = require('passport')
 const needsAuth = passport.authenticate('jwt', {session: false})
@@ -25,6 +26,12 @@ router.post('/sem/fee/create',needsAuth,SemFeeController.createSemFee);
 router.put('/sem/fee/add',needsAuth,SemFeeController.addSemFee);
 router.put('/sem/fee/paid',needsAuth,SemFeeController.paidFee);
 router.get('/sem/fee',needsAuth,SemFeeController.getSemFees);
+
+router.post('/bus/fee/create',needsAuth,BusFeeController.createBusFee);
+router.put('/bus/fee/paid',needsAuth,BusFeeController.paidFee);
+router.put('/bus/fee/add',needsAuth,BusFeeController.addBusFee);
+
+
 
 
 module.exports = router

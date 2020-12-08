@@ -9,37 +9,37 @@ const BusFeeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  busFess: [
+  busNumber: {
+    type: String,
+  },
+  busFees: [
     {
-      busNumber: {
-        type: String,
-      },
       semesterName: {
         type: String,
       },
       semesterFees: {
-        type: String,
-      },
-      paid: {
-        type: Boolean,
-        default: false,
+        type: Number,
+        default: 0
       },
       pending: {
         type: Boolean,
         default: true,
       },
       paidFees: {
-        type: String,
+        type: Number,
+        default: 0
       },
       pendingFees: {
-        type: String,
+        type: Number,
+        default: 0
       },
       fine: {
         type: Boolean,
         default: false,
       },
       fineAmt: {
-        type: String,
+        type: Number,
+        default: 0
       },
     },
   ],
