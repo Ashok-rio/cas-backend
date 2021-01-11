@@ -102,7 +102,7 @@ exports.savePost = async (req, res) => {
     !exisitingUser.savedPost ||
     exisitingUser.savedPost.includes(exisitingPost._id) === false
   ) {
-    exisitingUser.savedPost.push({ id: exisitingPost._id });
+    exisitingUser.savedPost.push(exisitingPost._id);
   }
   console.log(exisitingUser, "user");
 

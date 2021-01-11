@@ -134,7 +134,9 @@ exports.get = async (req, res) => {
 
   let err, exisitingUser;
 
-  [err, exisitingUser] = await to(User.findOne({ _id: user._id }));
+  [err, exisitingUser] = await to(
+    User.findOne({ _id: user._id }).populate("savedPost")
+  );
 
   if (err) {
     return ReE(res, err, HttpStatus.INTERNAL_SERVER_ERROR);
