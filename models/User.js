@@ -48,6 +48,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ["UG", "PG"],
   },
+  userType: {
+    type: String,
+    enum: ["staff", "student"],
+    default: "student",
+  },
   profilePic: {
     type: String,
   },
