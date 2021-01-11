@@ -135,7 +135,15 @@ exports.get = async (req, res) => {
   let err, exisitingUser;
 
   [err, exisitingUser] = await to(
-    User.findOne({ _id: user._id }).populate("savedPost")
+    User.findOne({ _id: user._id }).populate({
+      path: "savedPost",
+      model: "Post",
+      populate: {
+        path: "poster",
+        select: ["profilePic", "profileName"],
+        model: "User",
+      },
+    })
   );
 
   if (err) {
