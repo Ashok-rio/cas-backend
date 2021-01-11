@@ -10,6 +10,7 @@ const {
 const bcrypt = require("bcryptjs");
 const CONFIG = require("../config/config");
 const jwt = require("jsonwebtoken");
+const { Mongoose } = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
   regNo: {
@@ -70,6 +71,14 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  savedPost: [
+    {
+      id: {
+        type: mongoose.Types.ObjectId,
+        ref: "Post",
+      },
+    },
+  ],
 });
 
 UserSchema.pre("save", async function (next) {

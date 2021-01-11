@@ -21,6 +21,7 @@ router.put('/update',needsAuth, UserController.update);
 
 router.post('/post/create',needsAuth,PostController.postCreate);
 router.get('/post/getAll',needsAuth,PostController.getAllPost);
+router.post('/post/save', needsAuth, PostController.savePost);
 
 router.post('/sem/fee/create',needsAuth,SemFeeController.createSemFee);
 router.put('/sem/fee/add',needsAuth,SemFeeController.addSemFee);
