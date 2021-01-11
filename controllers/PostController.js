@@ -104,6 +104,19 @@ exports.savePost = async (req, res) => {
   ) {
     exisitingUser.savedPost.push({ id: exisitingPost._id });
   }
+  console.log(exisitingUser, "user");
+
+  let saveUser;
+
+  [err, saveUser] = await to(exisitingUser.save());
+
+  if (err) {
+    return ReE(res, err, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  if (!saveUser) {
+    return ReE(res, { message: "Post doesn't saved" }, HttpStatus.BAD_REQUEST);
+  }
 
   return ReS(
     res,
