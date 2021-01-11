@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
-const { to, ReE, ReS, isNull, isEmpty, TE } = require("../services/util.service");
+const {
+  to,
+  ReE,
+  ReS,
+  isNull,
+  isEmpty,
+  TE,
+} = require("../services/util.service");
 const bcrypt = require("bcryptjs");
 const CONFIG = require("../config/config");
 const jwt = require("jsonwebtoken");
@@ -14,11 +21,9 @@ const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    required: true,
   },
   email: {
     type: String,
-    required: true,
   },
   password: {
     type: String,
@@ -28,7 +33,6 @@ const UserSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: true,
   },
   dob: {
     type: String,
@@ -62,10 +66,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  admin:{
-    type:Boolean,
-    default: false
-  }
+  admin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 UserSchema.pre("save", async function (next) {
