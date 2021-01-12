@@ -91,36 +91,67 @@ exports.savePost = async (req, res) => {
     return ReE(res, { message: "Post doesn't found" }, HttpStatus.BAD_REQUEST);
   }
 
+  let savePost;
   if (
     exisitingUser.savedPost &&
     exisitingUser.savedPost.includes(exisitingPost._id) === true
   ) {
-    exisitingUser.savedPost.pop(exisitingPost._id);
+    [err, savePost] = await to(
+      User.updateOne(
+        { _id: user._id },
+        { $pull: { savedPost: exisitingPost._id } }
+      )
+    );
+
+    if (err) {
+      return ReE(res, err, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    if (!savePost) {
+      return ReE(
+        res,
+        { message: "Post doesn't saved" },
+        HttpStatus.BAD_REQUEST
+      );
+    }
+
+    return ReS(
+      res,
+      {
+        message: "Post unsaved successfully",
+        savePost: exisitingUser.savePost,
+      },
+      HttpStatus.OK
+    );
   }
 
   if (
     !exisitingUser.savedPost ||
     exisitingUser.savedPost.includes(exisitingPost._id) === false
   ) {
-    exisitingUser.savedPost.push(exisitingPost._id);
+    [err, savePost] = await to(
+      User.updateOne(
+        { _id: user._id },
+        { $push: { savedPost: exisitingPost._id } }
+      )
+    );
+
+    if (err) {
+      return ReE(res, err, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    if (!savePost) {
+      return ReE(
+        res,
+        { message: "Post doesn't saved" },
+        HttpStatus.BAD_REQUEST
+      );
+    }
+
+    return ReS(
+      res,
+      { message: "Post saved successfully", savePost: exisitingUser.savePost },
+      HttpStatus.OK
+    );
   }
-  console.log(exisitingUser, "user");
-
-  let saveUser;
-
-  [err, saveUser] = await to(exisitingUser.save());
-
-  if (err) {
-    return ReE(res, err, HttpStatus.INTERNAL_SERVER_ERROR);
-  }
-
-  if (!saveUser) {
-    return ReE(res, { message: "Post doesn't saved" }, HttpStatus.BAD_REQUEST);
-  }
-
-  return ReS(
-    res,
-    { message: "Post saved successfully", savePost: exisitingUser.savePost },
-    HttpStatus.OK
-  );
 };
